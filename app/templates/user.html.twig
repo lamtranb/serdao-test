@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Management</title>
+    <!--
+    It's a good practice to keep CSS code organized and maintainable.
+    By organizing your CSS code in a separate file, your HTML file will be cleaner, and it will be easier to manage and maintain your styles. Additionally, if you have multiple pages on your website, you can reuse the same external CSS file across all of them, promoting consistency and reducing redundancy.
+    -->
+    <link rel="stylesheet" href="/css/user.css">
+</head>
+<body>
+<!-- Should have base layout for this view file, but just leave it as it is for now. -->
+<h1>Add user form</h1>
+
+{{ form_start(userForm) }}
+    {{ form_row(userForm.firstname) }}
+    {{ form_row(userForm.lastname) }}
+    {{ form_row(userForm.address) }}
+    <input type="submit" value="Add user">
+{{ form_end(userForm) }}
+
+<h1>User list</h1>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Address</th>
+        <th>Delete</th>
+    </tr>
+    {% for user in users %}
+        <tr>
+            <td>{{ user.id }}</td>
+            <td>{{ user.firstname }}</td>
+            <td>{{ user.lastname }}</td>
+            <td>{{ user.address }}</td>
+            <td><a href="{{ path('app_user_delete', {'id': user.id}) }}">Delete</a></td>
+        </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>
+
